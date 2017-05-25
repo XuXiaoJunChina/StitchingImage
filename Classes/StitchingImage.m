@@ -20,6 +20,12 @@ const CGFloat marginSpaceRatio = 27.0;
 @implementation StitchingImage
 
 - (UIImageView *)stitchingOnImageView:(UIImageView *)canvasView withImageViews:(NSArray *)imageViews {
+    
+    if(imageViews.count > 9)
+    {
+        imageViews = [imageViews subarrayWithRange:NSMakeRange(0, 9)];
+    }
+    
     _margin = canvasView.frame.size.width / marginSpaceRatio;
     return [self stitchingOnImageView:canvasView withImageViews:imageViews marginValue:_margin];
 }
@@ -32,6 +38,8 @@ const CGFloat marginSpaceRatio = 27.0;
     {
         UIImageView* imageView_1 = imageViews[0];
         imageView_1.frame = CGRectMake(0, 0, _cellImageViewchrSideLength, _cellImageViewchrSideLength);
+        imageView_1.layer.cornerRadius = _cellImageViewchrSideLength/2.0f;
+        imageView_1.layer.masksToBounds = YES;
     }
     else if ([imageViews count] == 2)
     {
@@ -44,6 +52,8 @@ const CGFloat marginSpaceRatio = 27.0;
 
         UIImageView* imageView_1 = imageViews[0];
         imageView_1.frame = CGRectMake((canvasView.frame.size.width - _cellImageViewchrSideLength) / 2, row_1_origin_y, _cellImageViewchrSideLength, _cellImageViewchrSideLength);
+        imageView_1.layer.cornerRadius = _cellImageViewchrSideLength/2.0f;
+        imageView_1.layer.masksToBounds = YES;
         
         imageViews = [self generatorMatrix:imageViews beginOriginY:row_1_origin_y + _cellImageViewchrSideLength + _margin];
     }
@@ -58,9 +68,12 @@ const CGFloat marginSpaceRatio = 27.0;
         
         UIImageView* imageView_1 = imageViews[0];
         imageView_1.frame = CGRectMake((canvasView.frame.size.width - 2 * _cellImageViewchrSideLength - _margin) / 2, row_1_origin_y, _cellImageViewchrSideLength, _cellImageViewchrSideLength);
-        
+        imageView_1.layer.cornerRadius = _cellImageViewchrSideLength/2.0f;
+        imageView_1.layer.masksToBounds = YES;
         UIImageView* imageView_2 = imageViews[1];
         imageView_2.frame = CGRectMake(imageView_1.frame.origin.x + imageView_1.frame.size.width + _margin, row_1_origin_y, _cellImageViewchrSideLength, _cellImageViewchrSideLength);
+        imageView_2.layer.cornerRadius = _cellImageViewchrSideLength/2.0f;
+        imageView_2.layer.masksToBounds = YES;
         
         imageViews = [self generatorMatrix:imageViews beginOriginY:row_1_origin_y + _cellImageViewchrSideLength + _margin];
     }
@@ -76,7 +89,8 @@ const CGFloat marginSpaceRatio = 27.0;
         
         UIImageView* imageView_1 = imageViews[0];
         imageView_1.frame = CGRectMake((canvasView.frame.size.width - _cellImageViewchrSideLength) / 2, row_1_origin_y, _cellImageViewchrSideLength, _cellImageViewchrSideLength);
-        
+        imageView_1.layer.cornerRadius = _cellImageViewchrSideLength/2.0f;
+        imageView_1.layer.masksToBounds = YES;
         imageViews = [self generatorMatrix:imageViews beginOriginY:row_1_origin_y + _cellImageViewchrSideLength + _margin];
     }
     else if ([imageViews count] == 8)
@@ -85,10 +99,12 @@ const CGFloat marginSpaceRatio = 27.0;
         
         UIImageView* imageView_1 = imageViews[0];
         imageView_1.frame = CGRectMake((canvasView.frame.size.width - 2 * _cellImageViewchrSideLength - _margin) / 2, row_1_origin_y, _cellImageViewchrSideLength, _cellImageViewchrSideLength);
-        
+        imageView_1.layer.cornerRadius = _cellImageViewchrSideLength/2.0f;
+        imageView_1.layer.masksToBounds = YES;
         UIImageView* imageView_2 = imageViews[1];
         imageView_2.frame = CGRectMake(imageView_1.frame.origin.x + imageView_1.frame.size.width + _margin, row_1_origin_y, _cellImageViewchrSideLength, _cellImageViewchrSideLength);
-
+        imageView_2.layer.cornerRadius = _cellImageViewchrSideLength/2.0f;
+        imageView_2.layer.masksToBounds = YES;
         imageViews = [self generatorMatrix:imageViews beginOriginY:row_1_origin_y + _cellImageViewchrSideLength + _margin];
 
     }
@@ -140,6 +156,9 @@ const CGFloat marginSpaceRatio = 27.0;
         
         UIImageView* imageView = imageViews[i];
         imageView.frame = CGRectMake(origin_x, origin_y, _cellImageViewchrSideLength, _cellImageViewchrSideLength);
+        
+        imageView.layer.cornerRadius = _cellImageViewchrSideLength/2.0f;
+        imageView.layer.masksToBounds = YES;
         
     }
     
